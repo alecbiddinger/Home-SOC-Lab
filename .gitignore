@@ -1,0 +1,46 @@
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+client.keys
+*.key
+*.pem
+*.pfx
+*.p12
+id_rsa*
+id_ed25519*
+wazuh-passwords.txt
+wazuh-install-files.tar
+secrets/
+private/
+
+# Raw evidence: curate sanitized material separately
+raw-logs/
+raw-evidence/
+*.evtx
+*.pcap
+*.pcapng
+
+# VM images, snapshots, and installers
+*.vdi
+*.vmdk
+*.vhd
+*.vhdx
+*.vbox
+*.vbox-prev
+*.sav
+*.ova
+*.ovf
+*.iso
+*.msi
+*.deb
+Snapshots/
+
+# Local editor/OS and Python artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+.venv/

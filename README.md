@@ -32,7 +32,7 @@ This repository documents the foundation and the work ahead. No completed detect
 | Detections and investigations | Planned | No test results or completed cases yet. |
 | Automation | Planned | No scripts implemented in this repository. |
 
-Status reflects the owner's build record as of **September 5, 2026**. This documentation was prepared from that record; it is not a fresh inspection of the running VMs. Agent connectivity alone does not establish detection coverage. Screenshots and exported evidence have not yet been added.
+Status reflects the build record as of **September 5, 2026**. This documentation was prepared from that record; it is not a fresh inspection of the running VMs.
 
 ## Architecture overview
 
@@ -127,4 +127,3 @@ The four placeholder directories intentionally contain no detections, reports, s
 
 Review future screenshots, logs, command lines, and configuration exports before adding them. Redact secrets and identifying data while keeping enough context to explain the case. The private manager address shown here is intentional lab context. VM disks, snapshots, installers, and credential stores do not belong in this repository. The `.gitignore` provides basic exclusions; it does not replace content review.
 
-**Publication state: local and unpublished.** No GitHub repository has been created or modified, and nothing has been pushed. Publishing requires the owner's explicit approval.

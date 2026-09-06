@@ -89,7 +89,6 @@ The current design has no dedicated network sensor. SOC-005 depends on establish
 - [ ] Expand to the remaining scenarios only after their data sources are validated.
 - [ ] Write at least three investigations covering timeline, evidence, interpretation, limitations, and response recommendations.
 - [ ] Add tested parsing or enrichment utilities with sample lab-only inputs.
-- [ ] Review evidence and obtain explicit owner approval before any GitHub publishing.
 
 A detection is complete only when its write-up records the hypothesis, prerequisites, exact test activity, expected versus observed result, detection logic, false-positive considerations, and an ATT&CK rationale where applicable. An incident report must distinguish actions actually performed from proposed response steps. Successful enrollment is the foundation for these milestones.
 

@@ -1,9 +1,9 @@
 # Home SOC Lab
 
 **A virtual SOC and detection-engineering case study**  
-**Status: Work in progress · Infrastructure and agent enrollment complete**
+**Status: Work in progress · Infrastructure, agent enrollment, and telemetry validation complete · SOC-001 testing in progress**
 
-This personal lab brings Windows and Linux endpoints into a Wazuh environment on a Windows desktop running Oracle VirtualBox. The infrastructure is working and both endpoint agents are visible in the dashboard. The next milestone is to demonstrate the complete analyst workflow with evidence:
+This personal lab brings Windows and Linux endpoints into a Wazuh environment on a Windows desktop running Oracle VirtualBox. The infrastructure is working, both endpoint agents are visible in the dashboard, and Sysmon and SSH authentication events have been confirmed in Wazuh. Testing has started on the first detection case, SOC-001. The current milestone is to demonstrate the complete analyst workflow with evidence:
 
 **Generate controlled activity → collect telemetry → detect → investigate → improve.**
 
@@ -28,11 +28,11 @@ This repository documents the foundation and the work ahead. No completed detect
 | Windows Wazuh Agent | Complete | Manual client-key enrollment succeeded; service reported `Running`. |
 | Ubuntu Wazuh Agent | Complete | Package installed with `curl` workaround; service reported active/running. |
 | Sysmon and OpenSSH | Installed | Sysmon on Windows; OpenSSH on Ubuntu. |
-| Event-source validation | Pending | Sysmon ingestion and SSH authentication visibility in Wazuh still need documented verification. |
-| Detections and investigations | Planned | No test results or completed cases yet. |
+| Event-source validation | Complete | Sysmon events and SSH authentication events confirmed in Wazuh. |
+| Detections and investigations | In progress | SOC-001 testing has started; no test results or completed cases yet. |
 | Automation | Planned | No scripts implemented in this repository. |
 
-Status reflects the build record as of **September 5, 2026**. This documentation was prepared from that record; it is not a fresh inspection of the running VMs.
+Status reflects the build record as of **October 22, 2026**. This documentation was prepared from that record; it is not a fresh inspection of the running VMs.
 
 ## Architecture overview
 
@@ -63,13 +63,13 @@ The recorded Ubuntu agent package is `4.14.7-1` for `amd64`. Other installed ver
 | `WIN11-LAB` | `192.168.56.102` | Windows endpoint with Wazuh Agent and Sysmon |
 | `UBUNTU-LAB` | `192.168.56.103` | Ubuntu endpoint with Wazuh Agent and OpenSSH |
 
-## Planned detection scenarios
+## Detection scenarios
 
-**Every scenario below is planned and untested in this repository.** Proposed signals must be verified before writing detection logic or assigning ATT&CK mappings.
+**SOC-001 testing is in progress; no results are recorded yet. The remaining scenarios are planned and untested in this repository.** Proposed signals must be verified before writing detection logic or assigning ATT&CK mappings.
 
-| Case | Scenario | Telemetry to validate | Analyst question |
+| Case | Scenario | Required telemetry | Analyst question |
 |---|---|---|---|
-| SOC-001 | Repeated SSH authentication failures on Ubuntu | SSH authentication records collected by Wazuh | Which source and accounts were involved, over what time window, and was there a later success? |
+| SOC-001 | Repeated SSH authentication failures on Ubuntu | SSH authentication records collected by Wazuh (validated) | Which source and accounts were involved, over what time window, and was there a later success? |
 | SOC-002 | Test account added to local Administrators | Windows Security account and group-change events; audit settings required | Who granted privilege, to whom, and was it expected? |
 | SOC-003 | Suspicious-looking PowerShell using harmless test content | Sysmon process creation and PowerShell logs, subject to collection configuration | What command ran, what launched it, and what context makes it suspicious? |
 | SOC-004 | Scheduled task created for a benign test action | Task Scheduler/Security events and process telemetry, subject to configuration | What created the task and what would it execute? |
@@ -84,13 +84,14 @@ The current design has no dedicated network sensor. SOC-005 depends on establish
 - [x] Document the architecture and known setup lessons.
 - [x] Record the host-only IP address assigned to each VM.
 - [ ] Inventory exact software versions, VM allocations, and existing recovery snapshots.
-- [ ] Validate one Sysmon event and one SSH authentication event from source through Wazuh; record collection settings and sanitized evidence.
+- [x] Validate one Sysmon event and one SSH authentication event from source through Wazuh.
+- [ ] Add the collection settings and sanitized evidence from that validation to this repository.
 - [ ] Complete SOC-001 with a repeatable test, time window, actual observed rule/query results, and a benign comparison.
 - [ ] Expand to the remaining scenarios only after their data sources are validated.
 - [ ] Write at least three investigations covering timeline, evidence, interpretation, limitations, and response recommendations.
 - [ ] Add tested parsing or enrichment utilities with sample lab-only inputs.
 
-A detection is complete only when its write-up records the hypothesis, prerequisites, exact test activity, expected versus observed result, detection logic, false-positive considerations, and an ATT&CK rationale where applicable. An incident report must distinguish actions actually performed from proposed response steps. Successful enrollment is the foundation for these milestones.
+A detection is complete only when its write-up records the hypothesis, prerequisites, exact test activity, expected versus observed result, detection logic, false-positive considerations, and an ATT&CK rationale where applicable. An incident report must distinguish actions actually performed from proposed response steps. Successful enrollment and validated telemetry are the foundation for these milestones.
 
 ## Documentation and repository layout
 

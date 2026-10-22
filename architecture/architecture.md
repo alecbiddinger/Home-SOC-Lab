@@ -2,7 +2,7 @@
 
 [Project overview](../README.md) · [Completed setup](../docs/setup.md)
 
-**Work in progress:** infrastructure and endpoint enrollment are complete. Detailed telemetry validation and detection coverage remain future milestones.
+**Work in progress:** infrastructure, endpoint enrollment, and telemetry validation are complete. SOC-001 detection testing is in progress; broader detection coverage remains a future milestone.
 
 ![Virtual home SOC network diagram](network-diagram.png)
 
@@ -34,9 +34,9 @@ Host-only networking allows host/guest communication without directly attaching 
 ## Data flow and what is verified
 
 1. Windows and Ubuntu agents have enrolled with the manager; the owner reports both visible in the Wazuh dashboard.
-2. The intended Windows path is activity → Sysmon/Windows Event Log → Wazuh Agent → central Wazuh analysis and indexing → dashboard.
-3. The intended Ubuntu path is SSH activity → local authentication records → Wazuh Agent → central Wazuh analysis and indexing → dashboard.
-4. Source-specific collection and alert behavior need explicit end-to-end validation. The diagram's solid network links describe connectivity, not verified detection coverage.
+2. The Windows path is activity → Sysmon/Windows Event Log → Wazuh Agent → central Wazuh analysis and indexing → dashboard. A Sysmon event has been confirmed end to end on this path.
+3. The Ubuntu path is SSH activity → local authentication records → Wazuh Agent → central Wazuh analysis and indexing → dashboard. An SSH authentication event has been confirmed end to end on this path.
+4. Detection behavior is being tested case by case, starting with SOC-001. The diagram's solid network links describe connectivity, not verified detection coverage.
 
 Windows enrollment used a manager-generated client key imported into the agent GUI. Ubuntu installation supplied the manager address and was followed by starting the agent service. Enrollment material is deliberately excluded from this repository.
 

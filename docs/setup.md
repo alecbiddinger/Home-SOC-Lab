@@ -52,7 +52,7 @@ The client key is manager-generated enrollment material, not the dashboard passw
 
 Sysmon was downloaded from Microsoft and is part of the reported completed Windows endpoint. The build guidance used the x64 executable with a default installation.
 
-Sysmon writes to the `Microsoft-Windows-Sysmon/Operational` event channel. Collection of that channel must be validated separately from agent enrollment. See [Microsoft's Sysmon documentation](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon).
+Sysmon writes to the `Microsoft-Windows-Sysmon/Operational` event channel. Collection of that channel is validated separately from agent enrollment; a Sysmon event has since been confirmed in Wazuh (see the [project status](../README.md#current-status)). See [Microsoft's Sysmon documentation](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon).
 
 ## 3. Ubuntu endpoint
 
